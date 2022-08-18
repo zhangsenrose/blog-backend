@@ -1,6 +1,10 @@
 package com.cloud.top.blog.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.cloud.top.blog.model.Blog;
+import com.cloud.top.blog.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BlogController {
 
-    @GetMapping("/test")
-    public String test() {
-        return "success";
-    }
+    @Autowired
+    private BlogService blogService;
+
+   @PostMapping("/addBlog")
+   public Blog addBlog(@RequestBody Blog blog){
+       return blogService.addBlog(blog);
+   }
 }
